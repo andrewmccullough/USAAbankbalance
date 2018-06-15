@@ -45,16 +45,18 @@ def keys(selector, string):
 def out(string: str, ALL: bool=False):
     if ALL:
         if pync:
-            pync.notify(string)
+            pync.notify(string, title="Bank balance")
         print(string)
     else:
         if VERBOSITY == 200:
             print(string)
         elif VERBOSITY == 300:
             if pync:
-                pync.notify(string)
+                pync.notify(string, title="Bank balance")
             else:
                 print(string)
+        elif VERBOSITY == 400:
+            out(string, True)
 
 
 def acknowledge():
@@ -102,11 +104,12 @@ def welcome():
     print("200: prints output to console to report progress (will still notify of errors and balance).") if pync else print("200: prints output to console to report progress (in addition to errors and balance).")
     if pync:
         print("300: sends notifications to report progress, errors, and balance.")
+        print("400: prints to console and sends notifications to report progress, errors, and balance.")
 
-    print("Enter 100, 200, or 300 to set the script verbosity. (This can be changed in the config.json file.)") if pync else print("Enter 100 or 200 to set the script verbosity. (This can be changed in the config.json file.)")
+    print("Enter 100, 200, 300, or 400 to set the script verbosity. (This can be changed in the config.json file.)") if pync else print("Enter 100 or 200 to set the script verbosity. (This can be changed in the config.json file.)")
 
     desired = input().strip()
-    if desired in ["100", "200", "300"]:
+    if desired in ["100", "200", "300", "400"]:
         VERBOSITY = int(desired)
     else:
         print("That wasn't a valid response. Instead, the script will use the default (200).")
