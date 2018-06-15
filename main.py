@@ -1,5 +1,6 @@
 import json
 import os
+import platform
 
 try:
     from selenium import webdriver
@@ -11,12 +12,15 @@ except ImportError:
     print("You don't have selenium installed.")
     exit()
 
-try:
-    import pync
-except ImportError:
+if platform.system() == "Darwin":
+    try:
+        import pync
+    except ImportError:
+        pync = None
+        print("You don't have pync installed.")
+        print("The script will continue to function, but will be missing features.")
+else:
     pync = None
-    print("You don't have pync installed.")
-    print("The script will continue to function, but will be missing features.")
 
 # How long Selenium will wait to find an element.
 MAX_WAIT = 5
