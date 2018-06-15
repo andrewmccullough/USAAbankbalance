@@ -14,7 +14,7 @@ This script offers a simple way to check the balance of your USAA account in the
 
 Since this script is dependent on Selenium, changes to the USAA website may break it. If you are experiencing problems, please create a new issue here on GitHub.
 
-### more options
+### options
 
 When you use the script for the first time, you will input your credentials and choose how verbose the script should be.
 
