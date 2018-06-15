@@ -22,6 +22,7 @@ if platform.system() == "Darwin":
 else:
     pync = None
 
+
 # How long Selenium will wait to find an element.
 MAX_WAIT = 5
 
