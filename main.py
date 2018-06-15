@@ -21,6 +21,10 @@ except ImportError:
 # How long Selenium will wait to find an element.
 MAX_WAIT = 5
 
+# CSS selector of the element containing your account balance.
+# If you are modifying this selector, remember that this script visits the mobile version of USAA.com.
+BALANCE_ELEMENT_SELECTOR = "#id3 > ul > li:nth-child(1) > a > span > span.acct-bal"
+
 
 def click(selector):
     Wait(driver, MAX_WAIT).until(
@@ -220,7 +224,7 @@ try:
                     balance = Wait(driver, MAX_WAIT).until(
                         conditions.visibility_of_element_located((
                             By.CSS_SELECTOR,
-                            "#id3 > ul > li:nth-child(1) > a > span > span.acct-bal"
+                            BALANCE_ELEMENT_SELECTOR
                         ))
                     ).text.strip()
                     out("Your balance is currently " + balance + ".", True)
